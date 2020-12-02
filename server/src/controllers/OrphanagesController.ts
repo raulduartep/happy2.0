@@ -9,7 +9,6 @@ import fs from 'fs';
 import path from 'path';
 import User from '@models/UserModel';
 import dataValidation from '@utils/dataValidation';
-import UserController from './UserController';
 
 export default {
   async create(request: Request, response: Response) {
@@ -51,7 +50,7 @@ export default {
       longitude: Yup.number().required().min(-180).max(180),
       about: Yup.string().required().max(300),
       instructions: Yup.string().required(),
-      whatsapp: Yup.number().min(10).max(11),
+      whatsapp: Yup.string().matches(/^[0-9]{2}[0-9]?[0-9]{4}[0-9]{4}$/, 'Phone not valid'),
       opening_hours: Yup.string().required(),
       open_on_weekends: Yup.boolean().required(),
       images: Yup.array(
@@ -61,7 +60,7 @@ export default {
       ),
     });
 
-    const errors = dataValidation(schema, data);
+    const errors = await dataValidation(schema, data);
 
     if (errors) {
       return response.status(400).json({ message: 'Validation fails', errors });
@@ -81,6 +80,7 @@ export default {
 
       return response.status(201).json(OrphanagesView.render(orphanage));
     } catch (error) {
+      console.log(error);
       return response.status(400).json({
         message: 'Unexpected error',
       });
@@ -177,8 +177,9 @@ export default {
 
     try {
       const orphanagesRepository = getRepository(Orphanage);
+      const userRepository = getRepository(User);
 
-      const user = await UserController.indexForPk(userId);
+      const user = await userRepository.findOne(userId);
 
       const orphanages = await orphanagesRepository.find({
         where: { user, pending: true },
@@ -221,7 +222,6 @@ export default {
       opening_hours,
       pending,
       open_on_weekends: open_on_weekends === 'true',
-      images,
     };
 
     try {
@@ -258,6 +258,7 @@ export default {
 
       return response.status(200).send();
     } catch (error) {
+      console.log(error);
       return response.status(400).json({
         message: 'Unexpected error',
       });

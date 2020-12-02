@@ -80,34 +80,6 @@ export default class UserController {
     }
   }
 
-  static async indexForEmail(email: string) {
-    try {
-      const userRepository = getRepository(User);
-
-      const user = await userRepository.findOne({
-        where: { email },
-      });
-
-      return user;
-    } catch (error) {
-      throw new Error('Unexpected error');
-    }
-  }
-
-  static async indexForPk(id: number) {
-    try {
-      const userRepository = getRepository(User);
-
-      const user = await userRepository.findOne({
-        where: { id },
-      });
-
-      return user;
-    } catch (error) {
-      throw new Error('Unexpected error');
-    }
-  }
-
   static async autenticate(email: string, password: string) {
     try {
       const userRepository = getRepository(User);

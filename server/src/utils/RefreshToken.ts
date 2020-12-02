@@ -1,14 +1,15 @@
 import RefreshToken from '@models/RefreshTokenModel';
+import User from '@models/UserModel';
 import crypto from 'crypto';
 import { DateTime } from 'luxon';
 import { getRepository } from 'typeorm';
-import UserController from './UserController';
 
 export default {
   async create(userId: number) {
     const refreshTokenRepository = getRepository(RefreshToken);
+    const userRepository = getRepository(User);
 
-    const user = await UserController.indexForPk(userId);
+    const user = await userRepository.findOne(userId);
 
     const lastRefreshToken = await refreshTokenRepository.findOne({ user });
 
