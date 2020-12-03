@@ -14,8 +14,8 @@ Application designed by [Rockeseat](https://github.com/Rocketseat) by Next Level
 [ExpressJS](https://expressjs.com/)                      
 [SQLite](https://www.sqlite.org/)                     
 [MulterJS](https://github.com/expressjs/multer)                        
-[LuxonJS](https://moment.github.io/luxon/)
-[Yup](https://github.com/jquense/yup)
+[LuxonJS](https://moment.github.io/luxon/)                               
+[Yup](https://github.com/jquense/yup)                                       
 [BCrypt](https://github.com/kelektiv/node.bcrypt.js)                    
 
 ### Installation 
