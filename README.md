@@ -26,7 +26,7 @@ git clone https://github.com/raulduartep/happy2.0.git
 Run Api
 ```
 # Go to server folder
-$ cd Happy2.0/server
+$ cd happy2.0/server
 
 # Install Dependencies
 $ yarn install
@@ -38,7 +38,7 @@ $ yarn dev
 Run Web
 ```
 # Go to web folder
-$ cd Happy2.0/web
+$ cd happy2.0/web
 
 # Install Dependencies
 $ yarn install
