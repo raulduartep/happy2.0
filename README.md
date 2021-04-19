@@ -1,7 +1,5 @@
 ## Overview
 
-This project is focused to bring teachers and students closer together and speeding the classroom search.
-
 Application designed by [Rockeseat](https://github.com/Rocketseat) by Next Level Week #2
 
 ### Technologies
